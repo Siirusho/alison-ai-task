@@ -43,23 +43,27 @@ Experience true multi-tab collaboration where actions in one browser tab instant
 ### Requirements
 
 Before you begin, ensure you have:
+
 - Node.js version 18 or newer installed
 - npm or yarn package manager available
 
 ### Setup Instructions
 
 1. **Get the code**
+
    ```bash
    git clone <repository-url>
    cd collaboration-dashboard
    ```
 
 2. **Install packages**
+
    ```bash
    npm install
    ```
-   
+
    This command will set up:
+
    - The Next.js framework with React 19
    - Tailwind CSS v4 along with PostCSS tooling
    - Lucide React icon library
@@ -67,6 +71,7 @@ Before you begin, ensure you have:
    - Day.js library for date manipulation
 
 3. **Launch development mode**
+
    ```bash
    npm run dev
    ```
@@ -126,12 +131,15 @@ collaboration-dashboard/
 ## Usage Guide
 
 ### Multi-Tab Setup
+
 Launch the app in several browser tabs simultaneously. Each tab becomes its own user identity, visible in the active users sidebar. Names are generated automatically using a combination format.
 
 ### Working with the Counter
+
 Interact with the increment/decrement controls from any open tab. The counter value updates immediately everywhere. Each change displays the username responsible and the exact time of modification.
 
 ### Using the Chat Feature
+
 1. Enter your message in the text input area
 2. Optionally configure a time-to-live value (in seconds) for the message
 3. Submit by pressing Enter or clicking the send control
@@ -141,6 +149,7 @@ Interact with the increment/decrement controls from any open tab. The counter va
 7. Remove messages you've created using the delete action
 
 ### Understanding User Indicators
+
 - **Green indicator**: User was active in the last 5 seconds
 - **Yellow indicator**: User activity occurred within the past minute
 - **Gray indicator**: No activity detected for over a minute
@@ -148,6 +157,7 @@ Interact with the increment/decrement controls from any open tab. The counter va
 - Users are removed from the list when their tab closes
 
 ### Temporary Messages
+
 Configure expiration times ranging from 1 to 3600 seconds. Once expired, messages display a warning notification instead of their content. The interface shows a live countdown timer for messages approaching expiration. Expired content is automatically filtered out.
 
 ## Configuration Details
@@ -164,8 +174,9 @@ The project integrates Tailwind CSS v4 through PostCSS:
 ### TypeScript Settings
 
 Enforced strictness includes:
+
 - `noUnusedLocals` - Prevents unused local variables
-- `noUnusedParameters` - Flags unused function parameters  
+- `noUnusedParameters` - Flags unused function parameters
 - `exactOptionalPropertyTypes` - Strict optional property handling
 - `noImplicitReturns` - Functions must explicitly return
 - `noUncheckedIndexedAccess` - Safe array/object access
@@ -175,6 +186,7 @@ Enforced strictness includes:
 ### Building
 
 1. **Compile the project**
+
    ```bash
    npm run build
    ```
@@ -187,12 +199,14 @@ Enforced strictness includes:
 ### Hosting Recommendations
 
 **Best Option**: Vercel (native Next.js support)
+
 ```bash
 npm install -g vercel
 vercel --prod
 ```
 
 **Alternative Platforms**:
+
 - Netlify
 - AWS Amplify
 - Railway
@@ -201,6 +215,7 @@ vercel --prod
 ### Speed Enhancements
 
 Built-in optimizations include:
+
 - **Code Organization**: Separate vendor code into distinct chunks
 - **Dead Code Elimination**: Remove unused JavaScript automatically
 - **Production Cleanup**: Strip console statements from final builds
@@ -214,17 +229,20 @@ Built-in optimizations include:
 ### Recommended Tests
 
 1. **Fundamental Sync Check**
+
    - Launch 3-4 browser tabs
    - Confirm all users appear in the sidebar
    - Modify counter from different tabs
    - Exchange messages between tabs
 
 2. **Presence System Validation**
+
    - Close one tab and verify user removal
    - Add a new tab and confirm new user appears
    - Monitor typing indicators across tabs
 
 3. **Message Functionality**
+
    - Experiment with various expiration durations
    - Confirm message deletion behaves correctly
    - Validate typing indicator timing
@@ -239,18 +257,21 @@ Built-in optimizations include:
 ### Issue Resolution
 
 1. **Synchronization Problems**
+
    - Confirm all tabs share the same origin (localhost:3000)
    - Inspect browser console for error messages
    - Validate `react-broadcast-sync` installation
    - Attempt refreshing all browser tabs
 
 2. **Missing Users**
+
    - Verify browser sessionStorage is enabled
    - Check that presence heartbeat is functioning
    - Search console for JavaScript exceptions
    - Ensure consistent origin across tabs
 
 3. **Message Sync Failures**
+
    - Test broadcast channel availability
    - Confirm message cleanup timers are active
    - Review console for TypeScript errors
@@ -276,6 +297,7 @@ Built-in optimizations include:
 ### System Architecture
 
 A centralized custom hook (`useCollaborativeSession`) orchestrates:
+
 - **Broadcast Mechanism**: Leverages `react-broadcast-sync` for tab communication
 - **State Coordination**: Manages user roster, message history, counter value, and typing status
 - **Action Routing**: Handles user interactions, typing signals, and resource cleanup
@@ -284,6 +306,7 @@ A centralized custom hook (`useCollaborativeSession`) orchestrates:
 ### Message Flow
 
 Type-safe event structures handle:
+
 - User join/leave notifications
 - Counter value mutations
 - Message transmission and reception
@@ -293,6 +316,7 @@ Type-safe event structures handle:
 ### Visual Design Philosophy
 
 The interface follows a cohesive design system implemented with Tailwind CSS v4:
+
 - **Color Palette**: Blue serves as primary, grays provide neutral tones, status colors (green/yellow/red) indicate states
 - **Spatial Rhythm**: Uniform spacing scale ensures visual consistency
 - **Component Pattern**: Card-based UI elements feature rounded edges and subtle elevation
